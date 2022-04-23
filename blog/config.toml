@@ -1,0 +1,4 @@
+baseURL = "https://blog.micha.gg/"
+languageCode = "en-us"
+title = "Bits and Bytes"
+theme = "papermod"
