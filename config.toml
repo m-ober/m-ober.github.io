@@ -40,8 +40,8 @@ socialIcons = [
 Title = "Welcome!"
 Content = """Here you can read ramblings about some of my interests:
 Mainly software, hardware, (electronic) projects and CTFs.
-This blog should rather be seen as some kind of personal archive and
-a place where I practice writing skills, not as source for ultimate truth 😉"""
+This blog should be considered as some kind of personal archive and
+a place where I practice writing skills."""
 
 [permalinks]
 posts = "/:year/:month/:day/:slug/"
