@@ -144,7 +144,7 @@ Connect to the MariaDB server, execute the payload:
 mysql -u zabbix -p<password> -e 'SET GLOBAL wsrep_provider="/tmp/payload.so";'
 ```
 
-# Conclusion
+# Conclusion and Learnings
 
 I really liked the Shibboleth machine. Probably because it wasn't "the usual
 web stuff". Most of the time I needed was to understand

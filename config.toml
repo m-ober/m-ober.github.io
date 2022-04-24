@@ -23,8 +23,8 @@ disableScrollToTop = false
 comments = false
 hideMeta = false
 hideSummary = false
-showtoc = false
-tocopen = false
+showtoc = true
+tocopen = true
 
 #description = "ExampleSite description"
 #keywords = [ "Blog", "Portfolio", "PaperMod" ]
@@ -34,13 +34,12 @@ socialIcons = [
   { name = "twitter", url = "https://twitter.com/hwl_micha" },
   { name = "github", url = "https://github.com/m-ober" },
   { name = "discord", url = "https://discordapp.com/users/140608056424660992" },
-  { name = "hackthebox", url = "https://app.hackthebox.com/profile/596601" },
 ]
 
 [params.homeInfoParams]
 Title = "Welcome!"
 Content = """Here you can read ramblings about some of my interests:
-Mainly software, hardware, electronic projects and HackTheBox.
+Mainly software, hardware, (electronic) projects and CTFs.
 This blog should rather be seen as some kind of personal archive and
 a place where I practice writing skills, not as source for ultimate truth 😉"""
 
