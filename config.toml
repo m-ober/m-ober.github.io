@@ -34,6 +34,7 @@ socialIcons = [
   { name = "twitter", url = "https://twitter.com/hwl_micha" },
   { name = "github", url = "https://github.com/m-ober" },
   { name = "discord", url = "https://discordapp.com/users/140608056424660992" },
+  { name = "hackthebox", url = "https://app.hackthebox.com/profile/596601" }
 ]
 
 [params.homeInfoParams]
