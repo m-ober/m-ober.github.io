@@ -1,0 +1,7 @@
+main {
+  --main-width: 900px;
+}
+
+.first-entry {
+  min-height: 0px;
+}

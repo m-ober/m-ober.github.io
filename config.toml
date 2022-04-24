@@ -1,4 +1,53 @@
 baseURL = "https://blog.micha.gg/"
 languageCode = "en-us"
-title = "Bits and Bytes"
+title = "Micha's Attic"
 theme = "papermod"
+timeZone = "Europe/Berlin"
+uglyurls = false
+enableEmoji = true
+
+[params]
+env = "production"
+title = "Micha's Attic"
+author = "Micha"
+DateFormat = "January 2, 2006"
+defaultTheme = "auto"
+disableThemeToggle = false
+ShowReadingTime = true
+ShowShareButtons = false
+ShowPostNavLinks = false
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+disableSpecial1stPost = true
+disableScrollToTop = false
+comments = false
+hideMeta = false
+hideSummary = false
+showtoc = false
+tocopen = false
+
+#description = "ExampleSite description"
+#keywords = [ "Blog", "Portfolio", "PaperMod" ]
+#images = [ "<link or path of image for opengraph, twitter-cards>" ]
+
+socialIcons = [
+  { name = "twitter", url = "https://twitter.com/hwl_micha" },
+  { name = "github", url = "https://github.com/m-ober" },
+  { name = "discord", url = "https://discordapp.com/users/140608056424660992" },
+  { name = "hackthebox", url = "https://app.hackthebox.com/profile/596601" },
+]
+
+[params.homeInfoParams]
+Title = "Welcome!"
+Content = """Here you can read ramblings about some of my interests:
+Mainly software, hardware, electronic projects and HackTheBox.
+This blog should rather be seen as some kind of personal archive and
+a place where I practice writing skills, not as source for ultimate truth 😉"""
+
+[permalinks]
+posts = "/:year/:month/:day/:slug/"
+
+[menu]
+main = [
+  { name = "Tags", pageref = "tags", weight = 4 }
+]
