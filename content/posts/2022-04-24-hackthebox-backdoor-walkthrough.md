@@ -1,9 +1,9 @@
 ---
 title: "HackTheBox: \"Backdoor\" Walkthrough"
 date: 2022-04-24T19:56:04+02:00
-tags: []
+tags: ['hackthebox', 'ctf']
 slug: "hackthebox-backdoor-walkthrough"
-draft: true
+draft: false
 ---
 
 # Introduction
