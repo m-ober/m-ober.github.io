@@ -1,6 +1,6 @@
 ---
 title: "HackTheBox: \"Backdoor\" Walkthrough"
-date: 2022-04-24T19:56:04+02:00
+date: 2022-04-24
 tags: ['hackthebox', 'ctf']
 slug: "hackthebox-backdoor-walkthrough"
 draft: false
@@ -51,7 +51,7 @@ So let's use the LFI we found earlier to scan a range of PIDs.
 
 To be honest, this script could have been *a lot* easier - but somehow I got the idea
 "I want to scan faster - I need multiple connections", so I ended up with this.
-Maybe I'm able to use it again in the future :wink:
+Maybe I'm able to use it again in the future 😉
 
 (*Disclaimer: I'm not an async Python expert, so forgive me (or maybe even tell me)
 if there is a bad mistake.*)
@@ -148,7 +148,7 @@ uid=1000(user) gid=1000(user) groups=1000(user)
 
 ```
 
-Done! :thumbsup:
+Done! 👍
 
 # Root
 
@@ -163,14 +163,14 @@ But as this is an "easy" machine, there are no false trails - so it's highly lik
 that we *must* do something with the `screen` command.
 
 As I had literally no idea what do to, I Googled *"access root screen session as user"*
-(or something similar - didn't write down the exact search term :wink:), which
+(or something similar - didn't write down the exact search term 😉), which
 lead to [this post](https://unix.stackexchange.com/a/163878). The interesting part being:
 ```plain
 screen -x host_username/session_name
 ```
 We know the username is `root` and the session name is also `root`, so let's try
 ```plain
-screen -x root/root
+$ screen -x root/root
 ```
 ... and we will find ourselves in a screen session with a root shell!
 

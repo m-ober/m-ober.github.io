@@ -4,12 +4,13 @@ title = "Micha's Attic"
 theme = "papermod"
 timeZone = "Europe/Berlin"
 uglyurls = false
-enableEmoji = true
+enableEmoji = false
 
 [params]
 env = "production"
 title = "Micha's Attic"
 author = "Micha"
+description = "Read my blog about all kind of software, hardware, electronics and CTF related topics."
 DateFormat = "January 2, 2006"
 defaultTheme = "auto"
 disableThemeToggle = false
@@ -26,7 +27,6 @@ hideSummary = false
 showtoc = true
 tocopen = true
 
-#description = "ExampleSite description"
 #keywords = [ "Blog", "Portfolio", "PaperMod" ]
 #images = [ "<link or path of image for opengraph, twitter-cards>" ]
 

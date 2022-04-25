@@ -1,6 +1,6 @@
 ---
 title: "HackTheBox: \"Shibboleth\" Walkthrough"
-date: 2022-04-22T17:36:59+02:00
+date: 2022-04-22
 tags: ['hackthebox', 'ctf']
 slug: "hackthebox-shibboleth-walkthrough"
 draft: false

@@ -1,6 +1,6 @@
 ---
 title: "My GSoC 2022 project: SerialICE x coreboot"
-date: 2022-04-22T17:46:59+02:00
+date: 2022-05-20
 tags: ['gsoc', 'coreboot', 'serialice', 'hardware']
 draft: true
 ---
