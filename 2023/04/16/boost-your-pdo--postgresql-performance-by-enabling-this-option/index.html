@@ -1,0 +1,36 @@
+<!doctype html><html class=no-js lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>Boost your PDO + PostgreSQL performance by enabling this option - Micha's Attic</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="Micha's Attic" rel=home><div class="logo__item logo__text"><div class=logo__title>Micha's Attic</div><div class=logo__tagline>My personal blog about all kind of software, hardware, electronics and CTF related topics.</div></div></a></div><div class=divider></div></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Boost your PDO + PostgreSQL performance by enabling this option</h1><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2023-04-16T02:53:51+02:00>April 16, 2023</time></div></div></header><div class="content post__content clearfix"><p>Want a performance boost using PHP PDO + PostgreSQL without optimizing your queries or code?
+Then you should enable the driver-specific <code>PGSQL_ATTR_DISABLE_PREPARES</code> option.</p><h1 id=browsing-the-php-manual>Browsing the PHP manual</h1><p>The other day I was looking around in the PHP manual and stumbled upon the
+&ldquo;PDO Drivers&rdquo; section. Looking at the
+<a href=https://www.php.net/manual/en/ref.pdo-pgsql.php>PostgreSQL subsection</a>,
+I found this constant:</p><blockquote><p><strong>PDO::PGSQL_ATTR_DISABLE_PREPARES (int)</strong>
+Send the query and the parameters to the server together in a single call,
+avoiding the need to create a named prepared statement separately. If the query
+is only going to be executed once this can reduce latency by avoiding an
+unnecessary server round-trip.</p></blockquote><p>That sounded interesting - reduce the database calls by 50% just by enabling this option?
+I was looking around to find more about this setting, but there are almost no further resources.
+What I <em>could</em> find was:</p><ul><li>Doctrine <a href=https://github.com/doctrine/dbal/pull/714%5D>enables this setting by default</a> since 2014.</li><li>The <a href=https://github.com/php/php-src/commit/e378348a316008822737d47cf47a4938cbc07dd6>commit messages</a>
+that introduced this feature to PHP reads:</li></ul><blockquote><p>Faster than prepared statements when queries are run once. Slightly
+slower than PDO::ATTR_EMULATE_PREPARES but without the potential
+security implications of embedding parameters in the query itself.</p></blockquote><p>So what&rsquo;s the drawback? If you are preparing a statement and then execute
+it <em>many</em> times, this setting will decrease performance. But I&rsquo;m pretty sure
+almost all webapps use one-off queries exclusively.</p><h1 id=benchmarks>Benchmarks</h1><p>Time to do some
+&ldquo;scientific&rdquo; benchmarks on a website which I maintain, and which has a pretty
+old codebase with sometimes 100 and more queries per page load.
+I tested three different scenarios with <code>PGSQL_ATTR_DISABLE_PREPARES</code> enabled
+and disabled.</p><p><img src=/images/pgsql-plot.png alt=targets></p><p>As you can see enabling this option reduces the total page load time in
+scenario <strong>T</strong> by 15%, 7% in test <strong>C</strong> and 3,8% in test <strong>O</strong>, although the
+error bars are overlapping in the last two scenarios.</p><h1 id=defaults>Defaults</h1><p>In my opinion, defaults should be chosen to provide sane defaults
+and optimum performance for the <em>majority</em> of applications. I&rsquo;m glad
+that <code>ERRMODE_EXCEPTION</code> is enabled by default since PHP 8.0 - but this
+will <strong>break</strong> all applications that expect <code>execute()</code> et al to <strong>not</strong> throw
+Exceptions. Nevertheless, it should improve code quality because database
+errors will no longer be unnoticed.</p><p>The option <code>PGSQL_ATTR_DISABLE_PREPARES</code> on the other hand should <strong>not break</strong>
+any application - the worst case would be making applications slower that
+execute the same statement many times. But changing defaults seems to be
+a lengthy process for PHP - which is good on one side, because that means
+less applications will break when upgrading PHP. On the other side, I think
+enabling this option would be a good default. But maybe there a reasons
+I don&rsquo;t know about (yet), or just no one cares enough to start the process
+of changing the default. Furthermore, this option <em>only</em> works for
+PostgreSQL, so the affected userbase is not everyone who uses the <code>PDO</code> class.</p></div></article></main></div></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2023 Micha's Attic.
+<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>
