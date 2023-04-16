@@ -3,15 +3,15 @@ title: "HackTheBox: \"Backdoor\" Walkthrough"
 date: 2022-04-24
 tags: ['hackthebox', 'ctf']
 slug: "hackthebox-backdoor-walkthrough"
+categories: ["HackTheBox Walkthrough"]
+sidebar: false
 draft: false
 ---
 
-# Introduction
-
 The now retired *Backdoor* machine on HackTheBox is supposed to be an "easy" machine, so
-it should be absolutely straight-forward. Let's see!
+it should be absolutely straight-forward. Let's see!<!--more-->
 
-# Foothold
+## Foothold
 
 On this machine, I started with a directory scan, using the `fuzz-Bo0oM.txt` list, which
 usually yields good results - at least on HackTheBox. We'll notice that directory
@@ -109,7 +109,7 @@ gdbserver--once0.0.0.0:1337/bin/true
 Finally! On port 1337 there seems to be a `gdbserver` running. That seems
 pretty unusual but why not - let's see what we can do with this.
 
-# User
+## User
 
 After some research, we find the `exploit/multi/gdb/gdb_server_exec` payload
 in metasploit. I used the following configuration, where everything should be
@@ -150,7 +150,7 @@ uid=1000(user) gid=1000(user) groups=1000(user)
 
 Done! 👍
 
-# Root
+## Root
 
 For privilege escalation, I'm going to ask LinPEAS for an idea. Under the section
 "Unix Sockets Listening" there is an unusual entry: `/run/screen/S-root/964.root`.
@@ -178,7 +178,7 @@ NB: Using a non-upgraded reverse shell, this command fails with the message:
 
 > Must be connected to a terminal.
 
-# Conclusion and Learnings
+## Conclusion and Learnings
 
 Although this is an "easy" machine, I struggled a bit after finding the LFI.
 Enumerating the processes using `/proc` was something I didn't think off right away.

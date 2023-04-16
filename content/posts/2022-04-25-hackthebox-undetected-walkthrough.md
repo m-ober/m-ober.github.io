@@ -3,16 +3,17 @@ title: "HackTheBox: \"Undetected\" Walkthrough"
 date: 2022-04-25T18:08:18+02:00
 tags: ['hackthebox', 'ctf']
 slug: "hackthebox-undetected-walkthrough"
+categories: ["HackTheBox Walkthrough"]
+sidebar: false
+#summary: "custom summary"
 draft: true
 ---
 
-# Introduction
-
 I think this is one of my favourite machines on HackTheBox. It took quite some
-time, especially because I was following a false trail for a long time - after
-being back on track, it was a really fun challenge.
+time, especially because I was following a false trail for a long time - but after
+being back on track, it was a really fun challenge.<!--more-->
 
-# Foothold
+## Foothold
 
 We start by visiting the landing page. Only static content, but with
 one interesting link to `store.djewelry.htb` - which is another site and
@@ -26,7 +27,7 @@ remote attackers to execute arbitrary PHP code via HTTP POST data beginning with
 a "<?php " substring, as demonstrated by an attack on a site with an exposed /vendor
 folder, i.e., external access to the /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php URI.
 
-# User
+## User
 
 In order to avoid character escaping issues, we create a new file with name "data" and the payload:
 ```php
@@ -94,7 +95,7 @@ That looks promising!
 
 So we put that hash into hashcat, `su steven1` and done - we now have user access.
 
-# Root
+## Root
 
 We also remember that there was some mail, which we are now able to read:
 
@@ -161,7 +162,7 @@ if (iVar2 != 0) {
 opening Ghidra he searched for "backdoor" right away - really good intuition
 I'd say!)*
 
-## The lazy way
+### The lazy way
 
 The first way I tried was the lazy and potentially dangerous one, because
 I'd run the compromised sshd on my machine (well, in a VM) and attach
@@ -180,7 +181,7 @@ security measures in place, like disconnecting the network and so on).
 Still, on HackTheBox I'd assume that there are no outright malicious files on the
 machine.*
 
-## The better way
+### The better way
 
 The next day, I wanted to it "right", that is, reverse the obfuscation.
 If we take a moment and look at the code, what is really happening?
@@ -209,7 +210,7 @@ print(backdoor)
 The `unhexlify` function does not accept signed bytes, so ne need to convert
 `-0x5b` to an unsigned value using, for example, `hex(-0x5b & 0xff)`.
 
-# Conclusion and Learnings
+## Conclusion and Learnings
 
 For me, this was the most realistic machine I did until now. Having
 a public `vendor/` dir is gross negligence, but it can happen. To be honest,

@@ -2,11 +2,16 @@
 title: "HackTheBox: \"Devzat\" Walkthrough"
 date: 2022-04-26
 tags: ['hackthebox', 'ctf']
+categories: ["HackTheBox Walkthrough"]
 slug: "hackthebox-devzat-walkthrough"
 draft: false
 ---
 
-# Foothold
+I'd say *Devzat* is a nice machine to start with. It requires basic
+scanning techniques, but the clues are rather obvious and easy to
+follow.<!--more-->
+
+## Foothold
 
 Let's start with an nmap scan - we'll find the usual open ports `22/tcp` and `80/tcp`,
 but there is more (snippet from the nmap output):
@@ -86,7 +91,7 @@ func addPet(w http.ResponseWriter, r *http.Request) {
 We found a pretty obvious RCE!
 
 
-# User
+## User
 
 Let's try the RCE we just found:
 ```plain
@@ -171,7 +176,7 @@ Databases:
 ```
 Now just `su catherine` and we can read the user flag!
 
-# Root
+## Root
 
 We already had some success when connecting to the chatserver as "patrick", so let's
 try again as "catherine":
@@ -238,7 +243,7 @@ catherine: /file ../root.txt <password>
 [SYSTEM] <flag>
 ```
 
-# Conclusion and Learnings
+## Conclusion and Learnings
 
 All in all, this machine was pretty much straight forward.
 The foothold required quite a bit of scanning, but after finding

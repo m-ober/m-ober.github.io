@@ -3,18 +3,18 @@ title: "HackTheBox: \"Shibboleth\" Walkthrough"
 date: 2022-04-22
 tags: ['hackthebox', 'ctf']
 slug: "hackthebox-shibboleth-walkthrough"
+categories: ["HackTheBox Walkthrough"]
+sidebar: false
 draft: false
 ---
-
-# Introduction
 
 This is my first walkthrough for a HackTheBox machine. It's not the first
 machine I've done, though. But as Shibboleth is now "retired", it is allowed
 to publish walkthroughs. I have decided not to publish any passwords,
 because that would spoil the fun (and not add anything in terms of learning).
-I'll rather focus on my chain of thought to go through this challenge.
+I'll rather focus on my chain of thought to go through this challenge.<!--more-->
 
-# Foothold
+## Foothold
 
 The very first scan on every machine I do is a port scan using nmap. Depending on
 the results, I continue to directory and/or vhost (subdomain) scanning.
@@ -61,7 +61,7 @@ Found: zabbix.shibboleth.htb (Status: 200) [Size: 3686]
 Again, this looks promising. All vhosts point to the same Zabbix instance.
 Let's login with the credentials we obtained earlier!
 
-# User
+## User
 
 We now have adminisrator access to Zabbix. The installed Zabbix version 5.0.17
 does not have any known vulnerability. But, Zabbix is a monitoring software
@@ -112,7 +112,7 @@ uid=1000(ipmi-svc) gid=1000(ipmi-svc) groups=1000(ipmi-svc)
 
 Done - we can read the user flag!
 
-# Root
+## Root
 
 Our next step is to gain root access. If there is no obvious way forward,
 running LinPEAS usually gives us a hint: On this machine, there is a config
@@ -145,7 +145,7 @@ Connect to the MariaDB server, execute the payload:
 mysql -u zabbix -p<password> -e 'SET GLOBAL wsrep_provider="/tmp/payload.so";'
 ```
 
-# Conclusion and Learnings
+## Conclusion and Learnings
 
 I really liked the Shibboleth machine. Probably because it wasn't "the usual
 web stuff". Most of the time I needed was to understand

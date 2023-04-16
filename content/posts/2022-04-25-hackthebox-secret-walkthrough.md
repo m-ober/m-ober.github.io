@@ -1,12 +1,17 @@
 ---
 title: "HackTheBox: \"Secret\" Walkthrough"
-date: 2022-04-25T00:22:15+02:00
+date: 2022-04-25T14:00:00.000Z
 tags: ['hackthebox', 'ctf']
 slug: "hackthebox-secret-walkthrough"
+categories: ["HackTheBox Walkthrough"]
 draft: false
 ---
 
-# Foothold
+This machine might be interesting to those who don't like the
+repetitive and rather boring task of scanning a host - because it
+doesn't require any of that.<!--more-->
+
+## Foothold
 
 As usual, this machine has a landing page - we will find a ZIP file there,
 which we download, of course. We will immediately notice the `.git` folder,
@@ -55,7 +60,7 @@ router.get('/logs', verifytoken, (req, res) => {
 })
 ```
 
-# User
+## User
 
 The path is clear: Forge a JWT token for user "theadmin" and use the "file"
 query parameter to execute arbitrary commands:
@@ -75,7 +80,7 @@ Anway, we can now login via SSH and are done with the first part.
 *NB: I **always** set the permissions like this, because I once had a machine were it didn't work
 when the permissions were not exactly like this - and debugging this cost me a long time.*
 
-# Root
+## Root
 
 Up next: Privilege escalation. As usual, I'm relying on LinPEAS to give me a hint - which it does.
 LinPEAS shows us that `/opt/count` is a setuid binary. As such, it can read every file on the system.
@@ -123,9 +128,9 @@ All right - let's try it:
 $ apport-unpack /var/crash/_opt_count.1000.crash tmp/
 $ strings tmp/CoreDump
 ```
-That's it! :smile:
+That's it! 😀
 
-# Conclusion and Learnings
+## Conclusion and Learnings
 
 I was able to get the user flag really quick - having credentials in a git
 repository and forging a JWT token was not too interesting.

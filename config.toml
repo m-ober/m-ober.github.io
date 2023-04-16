@@ -1,53 +1,92 @@
 baseURL = "https://blog.micha.gg/"
 languageCode = "en-us"
 title = "Micha's Attic"
-theme = "papermod"
+theme = "mainroad"
 timeZone = "Europe/Berlin"
 uglyurls = false
 enableEmoji = false
 
-[params]
-env = "production"
-title = "Micha's Attic"
-author = "Micha"
+[Params]
+#env = "production"
+#title = "Micha's Attic"
+#author = "Micha"
 description = "Read my blog about all kind of software, hardware, electronics and CTF related topics."
 DateFormat = "January 2, 2006"
-defaultTheme = "auto"
-disableThemeToggle = false
-ShowReadingTime = true
-ShowShareButtons = false
-ShowPostNavLinks = false
-ShowBreadCrumbs = true
-ShowCodeCopyButtons = true
-disableSpecial1stPost = true
-disableScrollToTop = false
-comments = false
-hideMeta = false
-hideSummary = false
-showtoc = true
-tocopen = true
+#defaultTheme = "auto"
+#disableThemeToggle = false
+#ShowReadingTime = true
+#ShowShareButtons = false
+#ShowPostNavLinks = false
+#ShowBreadCrumbs = true
+#ShowCodeCopyButtons = true
+#disableSpecial1stPost = true
+#disableScrollToTop = false
+#comments = false
+#hideMeta = false
+#hideSummary = false
+#showtoc = true
+#tocopen = true
+#authorbox = true
+
+post_meta = ["date"]
 
 #keywords = [ "Blog", "Portfolio", "PaperMod" ]
 #images = [ "<link or path of image for opengraph, twitter-cards>" ]
 
-socialIcons = [
-  { name = "twitter", url = "https://twitter.com/hwl_micha" },
-  { name = "github", url = "https://github.com/m-ober" },
-  { name = "discord", url = "https://discordapp.com/users/140608056424660992" },
-  { name = "hackthebox", url = "https://app.hackthebox.com/profile/596601" }
-]
+#socialIcons = [
+  #{ name = "twitter", url = "https://twitter.com/hwl_micha" },
+  #{ name = "github", url = "https://github.com/m-ober" },
+  #{ name = "discord", url = "https://discordapp.com/users/140608056424660992" },
+  #{ name = "hackthebox", url = "https://app.hackthebox.com/profile/596601" },
+#  { name = "email", url = "mailto:blog@ober-mail.de" }
+#]
 
-[params.homeInfoParams]
-Title = "Welcome!"
-Content = """Here you can read ramblings about some of my interests:
-Mainly software, hardware, (electronic) projects and CTFs.
-This blog should be considered as some kind of personal archive and
-a place where I practice writing skills."""
+#[params.homeInfoParams]
+#Title = "Welcome!"
+#Content = """Here you can read ramblings about some of my interests:
+#Mainly software, hardware, (electronic) projects and CTFs.
+#This blog should be considered as some kind of personal archive and
+#a place where I practice writing skills."""
+
+[Params.logo]
+  subtitle = "My personal blog about all kind of software, hardware, electronics and CTF related topics."
 
 [permalinks]
 posts = "/:year/:month/:day/:slug/"
 
-[menu]
-main = [
-  { name = "Tags", pageref = "tags", weight = 4 }
+#[menu]
+#main = [
+  #{ name = "Tags", pageref = "tags", weight = 4 }
+#]
+
+[Params.style.vars]
+#  highlightColor = "#6699ff"
+  highlightColor = "#95B0B1"
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    noHl = false
+    style = 'manni'
+    tabWidth = 4
+
+[Params.sidebar]
+  widgets = ["recent", "categories", "taglist", "social"]
+  home = "right"
+  list = "right"
+  single = false
+
+[Params.widgets.social]
+twitter = "hwl_micha"
+custom = [
+  { title = "HackTheBox", url = "https://app.hackthebox.com/profile/596601", icon = "hackthebox.svg" },
+  { title = "Discord", url = "https://discordapp.com/users/140608056424660992", icon = "discord.svg" }
 ]
