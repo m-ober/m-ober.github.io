@@ -5,7 +5,7 @@ tags: []
 draft: true
 ---
 
-Want a "free" performance boost using PHP PDO + PostgreSQL without optimizing your queries?
+Want a performance boost using PHP PDO + PostgreSQL without optimizing your queries or code?
 Then you should enable the driver-specific `PGSQL_ATTR_DISABLE_PREPARES` option.<!--more-->
 
 # Browsing the PHP manual
