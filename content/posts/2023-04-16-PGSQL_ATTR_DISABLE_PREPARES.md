@@ -8,22 +8,26 @@ draft: true
 Want a "free" performance boost using PHP PDO + PostgreSQL without optimizing your queries?
 Then you should enable the driver-specific `PGSQL_ATTR_DISABLE_PREPARES` option.<!--more-->
 
-
 # Browsing the PHP manual
 
 The other day I was looking around in the PHP manual and stumbled upon the
-"PDO Drivers" section. Looking at the [PostgreSQL section](https://www.php.net/manual/en/ref.pdo-pgsql.php), I found this constant:
-
+"PDO Drivers" section. Looking at the
+[PostgreSQL subsection](https://www.php.net/manual/en/ref.pdo-pgsql.php),
+I found this constant:
 
 > **PDO::PGSQL_ATTR_DISABLE_PREPARES (int)**
-Send the query and the parameters to the server together in a single call, avoiding the need to create a named prepared statement separately. If the query is only going to be executed once this can reduce latency by avoiding an unnecessary server round-trip.
+Send the query and the parameters to the server together in a single call,
+avoiding the need to create a named prepared statement separately. If the query
+is only going to be executed once this can reduce latency by avoiding an
+unnecessary server round-trip.
 
 That sounded interesting - reduce the database calls by 50% just by enabling this option?
 I was looking around to find more about this setting, but there are almost no further resources.
 What I *could* find was:
 
 * Doctrine [enables this setting by default](https://github.com/doctrine/dbal/pull/714]) since 2014.
-* The [commit messages](https://github.com/php/php-src/commit/e378348a316008822737d47cf47a4938cbc07dd6) that introduced this feature to PHP reads:
+* The [commit messages](https://github.com/php/php-src/commit/e378348a316008822737d47cf47a4938cbc07dd6)
+that introduced this feature to PHP reads:
 
 > Faster than prepared statements when queries are run once. Slightly
 slower than PDO::ATTR_EMULATE_PREPARES but without the potential
