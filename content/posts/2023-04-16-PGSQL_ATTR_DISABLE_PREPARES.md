@@ -2,7 +2,7 @@
 title: "Boost your PDO + PostgreSQL performance by enabling this option"
 date: 2023-04-16T02:53:51+02:00
 tags: []
-draft: true
+draft: false
 ---
 
 Want a performance boost using PHP PDO + PostgreSQL without optimizing your queries or code?
